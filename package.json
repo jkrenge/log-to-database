@@ -1,0 +1,32 @@
+{
+  "name": "written-in-stone",
+  "version": "0.0.1",
+  "description": "Logs events and other data to a database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkrenge/log-to-database.git"
+  },
+  "keywords": [
+    "log",
+    "nodejs",
+    "logging",
+    "error",
+    "event"
+  ],
+  "author": "Julian Krenge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkrenge/log-to-database/issues"
+  },
+  "homepage": "https://github.com/jkrenge/log-to-database#readme",
+  "dependencies": {
+    "async": "^1.5.0",
+    "mongoose": "^4.3.4",
+    "mysql": "^2.10.0",
+    "underscore": "^1.8.3"
+  }
+}
