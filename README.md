@@ -1,17 +1,24 @@
 > Persistent write-only logging of requests, events, cycles, and loads to a database, it's basically written in stone.
 
-TOC: [Overview](#overview), [Setup](#setup), [Events that can be logged](#event-types-to-log), [Advanced](#callbacks), [Contribute](#contribute)
+TOC: [Overview](#overview), [Setup](#setup), [Quick start](#event-types-to-log), [Advanced](#advanced-usage), [Contribute](#contribute)
 
 # Overview
 Supports two engines: `MongoDB` (default and recommended), and `MySQL` (alpha, limited functionality).
 
 # Setup
-As listed in `samples/log.js`. First init the logger:
+
+Install via [npm](https://www.npmjs.com/package/written-in-stone):
 
 ```
-const WrittenInStone = require('../index.js');
+npm install written-in-stone --save
+```
+
+Then, as listed in `samples/log.js` init the logger:
+
+```
+const WrittenInStone = require('written-in-stone');
 const stonePlate = new WrittenInStone('mongodb', {
-  path: 'mongodb://localhost/pl_tracking'
+  path: 'mongodb://localhost/test'
 });
 ```
 
@@ -104,7 +111,18 @@ var step = 1;
 stonePlate.engraveCycle(type, identifier, step, null);
 ```
 
-# Callbacks
+# Advanced usage
+
+## Instances
+
+To segregate your logs, you can also pass an `instance` (which is a `Number`) to every `.engraveX()` as optional first parameter.
+
+```
+stonePlate.engraveActivity(0, 'something-happened, null');
+```
+
+## Callbacks
+
 Every `.engraveX()` has a `callback` as optional last parameter.
 
 ```

@@ -3,6 +3,7 @@ const _ = require('underscore');
 var mongoose = require("mongoose");
 
 var CycleSchema = new mongoose.Schema({
+  instance: Number,
   type: String,
   identifier: String,
   step: Number,
@@ -11,6 +12,12 @@ var CycleSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  collection: '_wis_cycles'
+});
+
+CycleSchema.index({
+  instance: 1
 });
 
 CycleSchema.index({

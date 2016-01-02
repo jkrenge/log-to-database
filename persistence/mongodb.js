@@ -62,9 +62,16 @@ function MongoDBPersistence(connection) {
 // Functions //
 ///////////////
 
-MongoDBPersistence.prototype.activity = function (activity, payload, callback) {
+MongoDBPersistence.prototype.activity = function (instance, activity, payload, callback) {
+  if (!_.isNumber(instance)) {
+    callback = payload;
+    payload = activity;
+    activity = instance;
+    instance = 0;
+  }
 
   var a = new Activity({
+    instance: instance,
     activity: activity,
     payload: payload
   });
@@ -75,9 +82,17 @@ MongoDBPersistence.prototype.activity = function (activity, payload, callback) {
 
 };
 
-MongoDBPersistence.prototype.status = function (key, value, payload, callback) {
+MongoDBPersistence.prototype.status = function (instance, key, value, payload, callback) {
+  if (!_.isNumber(instance)) {
+    callback = payload;
+    payload = value;
+    value = key;
+    key = instance;
+    instance = 0;
+  }
 
   var s = new Status({
+    instance: instance,
     key: key,
     value: value,
     payload: payload
@@ -89,9 +104,17 @@ MongoDBPersistence.prototype.status = function (key, value, payload, callback) {
 
 };
 
-MongoDBPersistence.prototype.request = function (requester, requested, payload, callback) {
+MongoDBPersistence.prototype.request = function (instance, requester, requested, payload, callback) {
+  if (!_.isNumber(instance)) {
+    callback = payload;
+    payload = requested;
+    requested = requester;
+    instance = requester;
+    instance = 0;
+  }
 
   var r = new Request({
+    instance: instance,
     requester: requester,
     requested: requested,
     payload: payload
@@ -103,9 +126,18 @@ MongoDBPersistence.prototype.request = function (requester, requested, payload, 
 
 };
 
-MongoDBPersistence.prototype.cycle = function (type, identifier, step, payload, callback) {
+MongoDBPersistence.prototype.cycle = function (instance, type, identifier, step, payload, callback) {
+  if (!_.isNumber(instance)) {
+    callback = payload;
+    payload = step;
+    step = identifier;
+    identifier = type;
+    type = instance;
+    instance = 0;
+  }
 
   var c = new Cycle({
+    instance: instance,
     type: type,
     identifier: identifier,
     step: step,

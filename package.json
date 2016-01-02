@@ -1,6 +1,6 @@
 {
   "name": "written-in-stone",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Logs events and other data to a database.",
   "main": "index.js",
   "scripts": {

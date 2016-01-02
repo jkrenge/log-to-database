@@ -119,6 +119,7 @@ MySQLPersistence.prototype.createDatastructure = function() {
 
   const table_request = 'CREATE TABLE ' + this.Table('request') + ' (' +
     '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,' +
+    '`instance` int(11) NOT NULL DEFAULT 0,' +
     '`created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,' +
     '`requester` varchar(256) NOT NULL DEFAULT \'anonymous\',' +
     '`requested` varchar(256) NOT NULL DEFAULT \'\',' +
@@ -147,10 +148,10 @@ MySQLPersistence.prototype.createDatastructure = function() {
 // Logging stuff //
 ///////////////////
 
-MySQLPersistence.prototype.request = function(requester, requested, payload, callback) {
+MySQLPersistence.prototype.request = function(instance, requester, requested, payload, callback) {
 
-  const qry = 'INSERT INTO ' + this.Table('request') + ' (requester, requested, payload) ' +
-    'values(\'' + requester + '\', \'' + requested + '\', \'' + JSON.stringify(payload) + '\')';
+  const qry = 'INSERT INTO ' + this.Table('request') + ' (instance, requester, requested, payload) ' +
+    'values(' + instance + ', \'' + requester + '\', \'' + requested + '\', \'' + JSON.stringify(payload) + '\')';
 
   connection.query(qry, function(err, result) {
 

@@ -24,28 +24,28 @@ function WrittenInStone(type, connection) {
 
 }
 
-WrittenInStone.prototype.engraveActivity = function (activity, payload, callback) {
+WrittenInStone.prototype.engraveActivity = function (instance, activity, payload, callback) {
   callback = typeof callback == 'function' ? callback : null;
 
-  database.activity(activity, payload, callback);
+  database.activity(instance, activity, payload, callback);
 };
 
-WrittenInStone.prototype.engraveStatus = function (key, value, payload, callback) {
+WrittenInStone.prototype.engraveStatus = function (instance, key, value, payload, callback) {
   callback = typeof callback == 'function' ? callback : null;
 
-  database.status(key, value, payload, callback);
+  database.status(instance, key, value, payload, callback);
 };
 
-WrittenInStone.prototype.engraveRequest = function (requester, requsted, payload, callback) {
+WrittenInStone.prototype.engraveRequest = function (instance, requester, requsted, payload, callback) {
   callback = typeof callback == 'function' ? callback : null;
 
-  database.request(requester, requsted, payload, callback);
+  database.request(instance, requester, requsted, payload, callback);
 };
 
-WrittenInStone.prototype.engraveCycle = function (type, identifier, step, payload, callback) {
+WrittenInStone.prototype.engraveCycle = function (instance, type, identifier, step, payload, callback) {
   callback = typeof callback == 'function' ? callback : null;
 
-  database.cycle(type, identifier, step, payload, callback);
+  database.cycle(instance, type, identifier, step, payload, callback);
 };
 
 ////////////
