@@ -2,9 +2,9 @@ const _ = require('underscore');
 
 var mongoose = require("mongoose");
 
-var RequestSchema = new mongoose.Schema({
-  requester: String,
-  requested: String,
+var StatusSchema = new mongoose.Schema({
+  key: String,
+  value: String,
   payload: Object,
   created: {
     type: Date,
@@ -12,12 +12,12 @@ var RequestSchema = new mongoose.Schema({
   }
 });
 
-RequestSchema.index({
-  requested: 1
+StatusSchema.index({
+  key: 1
 });
 
 ////////////
 // Export //
 ////////////
 
-exports.Request = mongoose.model("Request", RequestSchema);
+exports.Status = mongoose.model("Status", StatusSchema);

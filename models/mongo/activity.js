@@ -2,9 +2,8 @@ const _ = require('underscore');
 
 var mongoose = require("mongoose");
 
-var RequestSchema = new mongoose.Schema({
-  requester: String,
-  requested: String,
+var ActivitySchema = new mongoose.Schema({
+  activity: String,
   payload: Object,
   created: {
     type: Date,
@@ -12,12 +11,12 @@ var RequestSchema = new mongoose.Schema({
   }
 });
 
-RequestSchema.index({
-  requested: 1
+ActivitySchema.index({
+  activity: 1
 });
 
 ////////////
 // Export //
 ////////////
 
-exports.Request = mongoose.model("Request", RequestSchema);
+exports.Activity = mongoose.model("Activity", ActivitySchema);

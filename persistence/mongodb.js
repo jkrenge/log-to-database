@@ -4,7 +4,10 @@ const _ = require('underscore');
 
 const mongoose = require('mongoose');
 
+const Activity = require("../models/mongo/activity").Activity;
+const Status = require("../models/mongo/status").Status;
 const Request = require("../models/mongo/request").Request;
+const Cycle = require("../models/mongo/cycle").Cycle;
 
 /////////////////////////////////
 // MongoDB Connection Handling //
@@ -59,6 +62,33 @@ function MongoDBPersistence(connection) {
 // Functions //
 ///////////////
 
+MongoDBPersistence.prototype.activity = function (activity, payload, callback) {
+
+  var a = new Activity({
+    activity: activity,
+    payload: payload
+  });
+
+  a.save(function (err) {
+    if (typeof callback == 'function') callback(err);
+  });
+
+};
+
+MongoDBPersistence.prototype.status = function (key, value, payload, callback) {
+
+  var s = new Status({
+    key: key,
+    value: value,
+    payload: payload
+  });
+
+  s.save(function (err) {
+    if (typeof callback == 'function') callback(err);
+  });
+
+};
+
 MongoDBPersistence.prototype.request = function (requester, requested, payload, callback) {
 
   var r = new Request({
@@ -68,6 +98,21 @@ MongoDBPersistence.prototype.request = function (requester, requested, payload, 
   });
 
   r.save(function (err) {
+    if (typeof callback == 'function') callback(err);
+  });
+
+};
+
+MongoDBPersistence.prototype.cycle = function (type, identifier, step, payload, callback) {
+
+  var c = new Cycle({
+    type: type,
+    identifier: identifier,
+    step: step,
+    payload: payload
+  });
+
+  c.save(function (err) {
     if (typeof callback == 'function') callback(err);
   });
 
